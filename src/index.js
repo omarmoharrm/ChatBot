@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 initWebRoutes(app)
-let port = process.env.port || 8080
+let port = process.env.PORT
 app.listen(port, () => {
   console.log("app listening on port: " + port)
 })
