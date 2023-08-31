@@ -62,7 +62,7 @@ function handleMessage(sender_psid, received_message) {
   let response
 
   // Check if the message contains text
-  if (received_message.text == "بكام" || "الاسعار" || "السعر" || "hm") {
+  if (received_message.text === "بكام" || "الاسعار" || "السعر" || "hm") {
     // Create the payload for a basic text message
     response = {
       text: `الاسعار 
@@ -82,7 +82,7 @@ one14all.com
 وشكرا لكل عملاءنا ودايما عند ثقتكم فينا ❤❤`,
     }
   } else if (
-    received_message.text == "العنوان" ||
+    received_message.text === "العنوان" ||
     "العناويين" ||
     "المكان" ||
     "مكانكم"
