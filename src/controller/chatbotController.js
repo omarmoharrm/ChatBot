@@ -25,8 +25,7 @@ export const getWebhook = (req, res) => {
   }
 }
 
-export const postWebhook = (req, res) =>
-  app.post("/webhook", (req, res) => {
+export const postWebhook = (req, res) => {
     // Parse the request body from the POST
     let body = req.body
 
@@ -48,7 +47,7 @@ export const postWebhook = (req, res) =>
       // Return a '404 Not Found' if event is not from a page subscription
       res.sendStatus(404)
     }
-  })
+  }
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {}
