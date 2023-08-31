@@ -62,7 +62,7 @@ function handleMessage(sender_psid, received_message) {
   let response
 
   // Check if the message contains text
-  if (received_message.text == "بكام") {
+  if (received_message.text == "بكام" || "الاسعار" || "السعر" || "hm") {
     // Create the payload for a basic text message
     response = {
       text: `الاسعار 
@@ -80,6 +80,25 @@ function handleMessage(sender_psid, received_message) {
 one14all.com
 
 وشكرا لكل عملاءنا ودايما عند ثقتكم فينا ❤❤`,
+    }
+  } else if (
+    received_message.text == "العنوان" ||
+    "العناويين" ||
+    "المكان" ||
+    "مكانكم"
+  ) {
+    response = {
+      text: `فرع الهرم اول شارع ضياء مزار مول (كارفور مول) الدور التاني 🔸
+https://goo.gl/maps/c7iiYQtxVBQUXMUu6
+
+
+فرع العمرانية شارع سيدي عمار قريب من مترو ساقية مكي الخط ال2🔸
+https://goo.gl/maps/bhaxGFhqzsMBYqcLA
+
+
+فرع اسكندرية 🎉🎉 والخصومات الحصرية
+🔸 شارع الدهان متفرع من شارع بور سعيد كامب شيزار بجانب محطة كامب شيزار الترام وقهوة والي 
+https://goo.gl/maps/AhCDniHxvqVFMvMA9 `,
     }
   } else if (received_message.attachments) {
     // Gets the URL of the message attachment
