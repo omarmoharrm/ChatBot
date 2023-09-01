@@ -62,11 +62,25 @@ function handleMessage(sender_psid, received_message) {
   let response
 
   // Check if the message contains text
-  if (received_message.text === "بكام") {
+  if ((received_message.text === "بكام", "السعر", "الاسعار", "hm")) {
     console.log(typeof received_message.text)
     // Create the payload for a basic text message
     response = {
-      text: `ممكن تبعتلنا صورة المنتج المطلوب`,
+      text: `الاسعار 
+خامة قطن ١٠٠٪؜ 
+تيشيرت طباعة وش  300 ج
+طباعة وش وظهر 350 ج
+الاوفر سايز بيزيد 50 ج
+ 
+
+التوصيل خلال ٤ ايام من طلب الاوردر و يرجي ارسال العنوان ورقم التليفون والوزن والطول لطلب الاوردر  
+
+الشحن لاي محافظة ب 50 ج
+
+للطلب في اسرع وقت برجاء االتاكيد من الموقع الرسمي 
+one14all.com
+
+وشكرا لكل عملاءنا ودايما عند ثقتكم فينا ❤❤`,
     }
   } else if (received_message.attachments) {
     // Gets the URL of the message attachment
