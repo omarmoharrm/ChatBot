@@ -60,13 +60,7 @@ export const postWebhook = (req, res) => {
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
   let response
-
-  // Check if the message contains text
-  if ((received_message.text === "بكام", "السعر", "الاسعار", "hm")) {
-    console.log(typeof received_message.text)
-    // Create the payload for a basic text message
-    response = {
-      text: `الاسعار 
+  let prices = `الاسعار 
 خامة قطن ١٠٠٪؜ 
 تيشيرت طباعة وش  300 ج
 طباعة وش وظهر 350 ج
@@ -80,7 +74,20 @@ function handleMessage(sender_psid, received_message) {
 للطلب في اسرع وقت برجاء االتاكيد من الموقع الرسمي 
 one14all.com
 
-وشكرا لكل عملاءنا ودايما عند ثقتكم فينا ❤❤`,
+وشكرا لكل عملاءنا ودايما عند ثقتكم فينا ❤❤`
+  // Check if the message contains text
+  if (received_message.text === "بكام") {
+    // Create the payload for a basic text message
+    response = {
+      text: prices,
+    }
+  } else if (received_message.text === "السعر") {
+    response = {
+      text: prices,
+    }
+  } else if (received_message.text === "الاسعار") {
+    response = {
+      text: prices,
     }
   } else if (received_message.attachments) {
     // Gets the URL of the message attachment
