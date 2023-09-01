@@ -89,6 +89,10 @@ one14all.com
     response = {
       text: prices,
     }
+  } else if (received_message.title === "الاسعار والعروض") {
+    response = {
+      text: prices,
+    }
   } else if (received_message.attachments) {
     // Gets the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url
