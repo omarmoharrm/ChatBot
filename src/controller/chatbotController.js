@@ -76,16 +76,10 @@ one14all.com
 
 وشكرا لكل عملاءنا ودايما عند ثقتكم فينا ❤❤`
   // Check if the message contains text
-  if (received_message.text === "بكام") {
+  if (
+    received_message.text.includes(["hm", "بكام", "الاسعار", "السعر", "كام"])
+  ) {
     // Create the payload for a basic text message
-    response = {
-      text: prices,
-    }
-  } else if (received_message.text === "السعر") {
-    response = {
-      text: prices,
-    }
-  } else if (received_message.text === "الاسعار") {
     response = {
       text: prices,
     }
