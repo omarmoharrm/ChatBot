@@ -99,11 +99,9 @@ app.post("/webhook", (req, res) => {
 // Handles messages events
 function handleMessage(senderPsid, receivedMessage) {
   let response
-
-  // Checks if the message contains text
-  if (receivedMessage.text === "بكام") {
-    // Create the payload for a basic text message, which
-    // will be added to the body of your request to the Send API
+if (receivedMessage.text === "بكام") {
+    // Get the URL of the message attachment
+    let attachmentUrl = receivedMessage.attachments[0].payload.url
     response = {
       attachment: {
         type: "template",
@@ -111,9 +109,8 @@ function handleMessage(senderPsid, receivedMessage) {
           template_type: "generic",
           elements: [
             {
-              title: "Welcome to One For All store",
-              subtitle: "اختار الاجابة",
-              image_url: attachmentUrl,
+              title: "Welcome to one for all store",
+              subtitle: "What do you want to know ?",
               buttons: [
                 {
                   type: "postback",
