@@ -1,16 +1,17 @@
 import express from "express"
+import morgan from "morgan"
 import bodyParser from "body-parser"
-import viewEngine from "./config/viewEngine.js"
-import initWebRoutes from "./routes/web.js"
-import "dotenv/config"
-
-let app = express()
-viewEngine(app)
+const app = express()
+// app configuration
+app.set("port", process.env.PORT || 8080)
+// setup our express application
+app.use(morgan("dev")) // log every request to the console.
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-
-initWebRoutes(app)
-let port = process.env.PORT
-app.listen(port, () => {
-  console.log("app listening on port: " + port)
+// app routes
+// import("../routes/webhook_verify")(app)
+// warming up the engines !! setta !! go !!!.
+app.listen(app.get("port"), function () {
+  const url = "http://localhost:" + app.set("port")
+  console.log("Application running on port: ", app.get("port"))
 })
