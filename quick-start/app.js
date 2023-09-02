@@ -101,11 +101,18 @@ function handleMessage(senderPsid, receivedMessage) {
   let response
 
   // Checks if the message contains text
-  if (receivedMessage.text) {
+  if (receivedMessage.text === "بكام") {
     // Create the payload for a basic text message, which
     // will be added to the body of your request to the Send API
     response = {
-      text: `You sent the message: '${receivedMessage.text}'. Now send me an attachment!`,
+      payload: {
+        template_type: "button",
+        text: "برجاء اختيار المنتج المطلوب",
+        buttons: [
+          { type: "postback", title: "الاسعار", payload: "T1" },
+          { type: "postback", title: "عناويين الفروع", payload: "T2" },
+        ],
+      },
     }
   } else if (receivedMessage.attachments) {
     // Get the URL of the message attachment
@@ -117,8 +124,8 @@ function handleMessage(senderPsid, receivedMessage) {
           template_type: "generic",
           elements: [
             {
-              title: "Is this the right picture?",
-              subtitle: "Tap a button to answer.",
+              title: "هل سؤالك عن هذا المنتج ؟",
+              subtitle: "اختار الاجابة",
               image_url: attachmentUrl,
               buttons: [
                 {
@@ -151,10 +158,38 @@ function handlePostback(senderPsid, receivedPostback) {
   let payload = receivedPostback.payload
 
   // Set the response based on the postback payload
-  if (payload === "yes") {
-    response = { text: "Thanks!" }
-  } else if (payload === "no") {
-    response = { text: "Oops, try sending another image." }
+  if (payload === "T1") {
+    response = {
+      text: `الاسعار 
+خامة قطن ١٠٠٪؜ 
+تيشيرت طباعة وش  300 ج
+طباعة وش وظهر 350 ج
+الاوفر سايز بيزيد 50 ج
+ 
+
+التوصيل خلال ٤ ايام من طلب الاوردر و يرجي ارسال العنوان ورقم التليفون والوزن والطول لطلب الاوردر  
+
+الشحن لاي محافظة ب 50 ج
+
+للطلب في اسرع وقت برجاء االتاكيد من الموقع الرسمي 
+one14all.com
+
+وشكرا لكل عملاءنا ودايما عند ثقتكم فينا ❤❤`,
+    }
+  } else if (payload === "T2") {
+    response = {
+      text: `فرع الهرم اول شارع ضياء مزار مول (كارفور مول) الدور التاني 🔸
+https://goo.gl/maps/c7iiYQtxVBQUXMUu6
+
+
+فرع العمرانية شارع سيدي عمار قريب من مترو ساقية مكي الخط ال2🔸
+https://goo.gl/maps/bhaxGFhqzsMBYqcLA
+
+
+فرع اسكندرية 🎉🎉 والخصومات الحصرية
+🔸 شارع الدهان متفرع من شارع بور سعيد كامب شيزار بجانب محطة كامب شيزار الترام وقهوة والي 
+https://goo.gl/maps/AhCDniHxvqVFMvMA9 `,
+    }
   }
   // Send the message to acknowledge the postback
   callSendAPI(senderPsid, response)
