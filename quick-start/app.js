@@ -105,38 +105,25 @@ function handleMessage(senderPsid, receivedMessage) {
     // Create the payload for a basic text message, which
     // will be added to the body of your request to the Send API
     response = {
-      payload: {
-        template_type: "button",
-        text: "برجاء اختيار المنتج المطلوب",
-        buttons: [
-          { type: "postback", title: "الاسعار", payload: "T1" },
-          { type: "postback", title: "عناويين الفروع", payload: "T2" },
-        ],
-      },
-    }
-  } else if (receivedMessage.attachments) {
-    // Get the URL of the message attachment
-    let attachmentUrl = receivedMessage.attachments[0].payload.url
-    response = {
       attachment: {
         type: "template",
         payload: {
           template_type: "generic",
           elements: [
             {
-              title: "هل سؤالك عن هذا المنتج ؟",
+              title: "Welcome to One For All store",
               subtitle: "اختار الاجابة",
               image_url: attachmentUrl,
               buttons: [
                 {
                   type: "postback",
-                  title: "Yes!",
-                  payload: "yes",
+                  title: "الاسعار",
+                  payload: "T1",
                 },
                 {
                   type: "postback",
-                  title: "No!",
-                  payload: "no",
+                  title: "العناويين",
+                  payload: "T2",
                 },
               ],
             },
